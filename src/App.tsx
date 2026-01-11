@@ -44,7 +44,7 @@ const DEADLINE_MS = 2000;
 const ITI_MIN = 700;
 const ITI_MAX = 1300;
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwTflRzizv3-41wffxIwlB_DeINYp3qQvqVhs7Zj5pZ6O6Y9iiNrr0irxMsnD0Z8q0W-A/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzauIcxpl6kTrcw8S9XHANbz9ZhqyN10Sw0QWyUEMS7yUD4AeQRmt71Mz67bz0itkvn/exec';
 const TCLE_DOWNLOAD_URL = 'https://drive.google.com/file/d/1zEszA8NnJIb2HpCGp-Nhj9VB3kx-hUq9/view?usp=sharing';
 
 /* ===================== APP ===================== */
