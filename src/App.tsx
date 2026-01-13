@@ -287,7 +287,7 @@ const App: React.FC = () => {
       <div className="screen">
         <div className="card">
           {/* ADICIONE A URL DA IMAGEM DO LOGO AQUI */}
-          <img src="" alt="Logo LaPS" className="lab-logo" />
+          <img src="https://www.laps.ufpa.br/assets/img/laps_logo.png" alt="Logo LaPS" className="lab-logo" />
           <h1>Experimento Stroop</h1>
           <p className="subtitle">Dinâmica Contextual Sequencial</p>
           <p className="info">UFPA - ITEC - Laboratório de Processamento de Sinais (LaPS)</p>
