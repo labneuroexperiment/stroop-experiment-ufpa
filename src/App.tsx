@@ -97,18 +97,18 @@ const App: React.FC = () => {
   /* ===================== FLUXO - PRACTICE ===================== */
 
   useEffect(() => {
-    if (phase === 'practice') {
+    if (phase === 'practice' && practiceTrials.length === 0) {
       setPracticeTrials(generateTrials(PRACTICE_TRIALS));
       setTrialInBlock(0);
       setIsPractice(true);
-      setPhase('fixation');
+      setTimeout(() => setPhase('fixation'), 100);
     }
-  }, [phase === 'practice']);
+  }, [phase, practiceTrials.length]);
 
   /* ===================== FLUXO - EXPERIMENT ===================== */
 
   useEffect(() => {
-    if (phase === 'experiment' && blocks.length === 0) {
+    if (phase === 'experiment' && blocks.length === 0 && !isPractice) {
       const bs: StroopTrial[][] = [];
       for (let b = 0; b < N_BLOCKS; b++) {
         bs.push(generateTrials(TRIALS_PER_BLOCK));
@@ -117,10 +117,9 @@ const App: React.FC = () => {
       setBlock(0);
       setTrialInBlock(0);
       setGlobalTrial(0);
-      setIsPractice(false);
-      setPhase('fixation');
+      setTimeout(() => setPhase('fixation'), 100);
     }
-  }, [phase === 'experiment']);
+  }, [phase, blocks.length, isPractice]);
 
   /* ===================== FLUXO - FIXATION ===================== */
 
@@ -141,7 +140,7 @@ const App: React.FC = () => {
   /* ===================== FLUXO - DEADLINE ===================== */
 
   useEffect(() => {
-    if ((phase === 'experiment' || phase === 'practice') && !isPractice) {
+    if (phase === 'experiment' || phase === 'practice') {
       const t = setTimeout(() => {
         if (onsetRef.current) {
           registerResponse(null);
@@ -149,7 +148,7 @@ const App: React.FC = () => {
       }, DEADLINE_MS);
       return () => clearTimeout(t);
     }
-  }, [phase, trialInBlock, isPractice]);
+  }, [phase, trialInBlock]);
 
   /* ===================== FLUXO - ITI ===================== */
 
@@ -287,6 +286,8 @@ const App: React.FC = () => {
     return (
       <div className="screen">
         <div className="card">
+          {/* ADICIONE A URL DA IMAGEM DO LOGO AQUI */}
+          <img src="" alt="Logo LaPS" className="lab-logo" />
           <h1>Experimento Stroop</h1>
           <p className="subtitle">Dinâmica Contextual Sequencial</p>
           <p className="info">UFPA - ITEC - Laboratório de Processamento de Sinais (LaPS)</p>
@@ -377,7 +378,7 @@ const App: React.FC = () => {
   if (phase === 'instructions') {
     return (
       <div className="screen">
-        <div className="card">
+        <div className="card card-scrollable">
           <h2>Instruções</h2>
           <p className="info">Você verá palavras de cores (VERMELHO, VERDE, AZUL) escritas em cores (vermelho, verde, azul).</p>
           <p className="info"><strong>Sua tarefa:</strong> Indicar se a palavra e a cor são <strong>CONGRUENTES</strong> ou <strong>INCONGRUENTES</strong>.</p>
