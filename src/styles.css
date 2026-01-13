@@ -49,8 +49,15 @@ body {
 
 .card-large {
   max-width: 800px;
-  max-height: 90vh;
+  max-height: 85vh;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.card-scrollable {
+  max-height: 85vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* ===================== TIPOGRAFIA ===================== */
@@ -372,53 +379,198 @@ h2 {
   margin: 16px 0;
 }
 
+/* ===================== LOGO ===================== */
+
+.lab-logo {
+  max-width: 120px;
+  height: auto;
+  margin: 0 auto 24px;
+  display: block;
+}
+
 /* ===================== RESPONSIVO ===================== */
 
 @media (max-width: 768px) {
+  .screen {
+    padding: 20px 10px;
+    justify-content: flex-start;
+  }
+
   h1 {
-    font-size: 36px;
+    font-size: 32px;
   }
 
   h2 {
-    font-size: 28px;
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .info {
+    font-size: 16px;
   }
 
   .card {
-    padding: 24px;
+    padding: 24px 16px;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .card-large {
+    padding: 24px 16px;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .consent-content {
+    padding: 16px;
+    margin: 16px 0;
   }
 
   .stroop-word {
-    font-size: 80px;
+    font-size: 64px;
+    letter-spacing: 2px;
   }
 
   .response-buttons {
     flex-direction: column;
     width: 100%;
+    gap: 16px;
   }
 
   .response-btn {
     width: 100%;
-    padding: 16px 24px;
-    font-size: 18px;
+    padding: 18px 24px;
+    font-size: 16px;
   }
 
   .key-row {
-    gap: 20px;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .key-item {
+    width: 100%;
   }
 
   .key {
-    font-size: 20px;
+    font-size: 18px;
     padding: 10px 16px;
     min-width: 50px;
+  }
+
+  .example-word {
+    font-size: 28px;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .trial-container {
+    gap: 40px;
+    width: 100%;
+    padding: 0 20px;
   }
 }
 
 @media (max-width: 480px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
   .stroop-word {
-    font-size: 60px;
+    font-size: 48px;
+    letter-spacing: 1px;
   }
 
   .fixation {
     font-size: 60px;
+  }
+
+  .response-btn {
+    padding: 16px 20px;
+    font-size: 14px;
+  }
+
+  .example-word {
+    font-size: 24px;
+  }
+
+  .consent-content {
+    max-height: 300px;
+    padding: 16px;
+  }
+
+  .consent-content p {
+    font-size: 14px;
+  }
+}
+
+/* ===================== TOUCH DEVICES ===================== */
+
+@media (hover: none) and (pointer: coarse) {
+  .response-btn {
+    padding: 20px 32px;
+    font-size: 18px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-primary, .btn-secondary {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
+  }
+
+  .input {
+    font-size: 16px;
+    touch-action: manipulation;
+  }
+}
+
+/* ===================== LANDSCAPE MOBILE ===================== */
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .screen, .screen-dark {
+    min-height: auto;
+    padding: 10px;
+  }
+
+  .card {
+    padding: 16px;
+    max-height: 95vh;
+  }
+
+  .stroop-word {
+    font-size: 48px;
+  }
+
+  .trial-container {
+    gap: 30px;
+  }
+
+  .response-buttons {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .response-btn {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  .fixation {
+    font-size: 50px;
   }
 }
