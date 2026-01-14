@@ -379,6 +379,131 @@ h2 {
   margin: 16px 0;
 }
 
+/* ===================== MENSAGEM DE AGRADECIMENTO ===================== */
+
+.thanks-message {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-left: 4px solid #667eea;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+  text-align: left;
+}
+
+.thanks-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.thanks-text {
+  font-size: 16px;
+  color: #2d3748;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+/* ===================== CÓDIGO DO PARTICIPANTE ===================== */
+
+.participant-code-box {
+  background: #f7fafc;
+  border: 2px solid #667eea;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.code-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 8px;
+}
+
+.code-value {
+  font-size: 32px;
+  font-weight: 900;
+  color: #667eea;
+  letter-spacing: 2px;
+  margin: 12px 0;
+  font-family: 'Courier New', monospace;
+}
+
+.code-info {
+  font-size: 14px;
+  color: #718096;
+  margin: 12px 0 8px 0;
+  line-height: 1.6;
+}
+
+.contact-info {
+  font-size: 16px;
+  color: #2d3748;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.contact-info strong {
+  color: #667eea;
+}
+
+/* ===================== BOTÃO FINALIZAR ===================== */
+
+.btn-finish {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 48px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 20px;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-finish:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+}
+
+.btn-finish:active {
+  transform: translateY(0);
+}
+
+/* ===================== RODAPÉ ===================== */
+
+.page-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+  z-index: 100;
+}
+
+.page-footer p {
+  margin: 4px 0;
+  font-weight: 400;
+}
+
+.page-footer p:first-child {
+  font-weight: 500;
+}
+
 /* ===================== LOGO ===================== */
 
 .lab-logo {
@@ -392,7 +517,7 @@ h2 {
 
 @media (max-width: 768px) {
   .screen {
-    padding: 20px 10px;
+    padding: 20px 10px 100px 10px;
     justify-content: flex-start;
   }
 
@@ -415,7 +540,7 @@ h2 {
   .card {
     padding: 24px 16px;
     max-width: 100%;
-    margin: 0;
+    margin: 0 0 20px 0;
   }
 
   .card-large {
@@ -475,6 +600,39 @@ h2 {
     width: 100%;
     padding: 0 20px;
   }
+
+  .thanks-message {
+    padding: 16px;
+    margin: 16px 0;
+  }
+
+  .thanks-title {
+    font-size: 18px;
+  }
+
+  .thanks-text {
+    font-size: 14px;
+  }
+
+  .participant-code-box {
+    padding: 16px;
+    margin: 16px 0;
+  }
+
+  .code-value {
+    font-size: 24px;
+    letter-spacing: 1px;
+  }
+
+  .page-footer {
+    font-size: 11px;
+    padding: 12px 10px;
+  }
+
+  .btn-finish {
+    font-size: 18px;
+    padding: 14px 32px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -515,6 +673,23 @@ h2 {
 
   .consent-content p {
     font-size: 14px;
+  }
+
+  .code-value {
+    font-size: 20px;
+  }
+
+  .thanks-title {
+    font-size: 16px;
+  }
+
+  .thanks-text {
+    font-size: 13px;
+  }
+
+  .page-footer {
+    font-size: 10px;
+    padding: 10px 8px;
   }
 }
 
