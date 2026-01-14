@@ -71,11 +71,10 @@ const App: React.FC = () => {
   /* ===================== GERAÇÃO DE CÓDIGO ===================== */
 
   const generateParticipantId = (first: string, last: string): string => {
-    const timestamp = Date.now().toString(36);
     const firstInitial = first.charAt(0).toUpperCase();
     const lastInitial = last.charAt(0).toUpperCase();
-    const random = Math.random().toString(36).substring(2, 6).toUpperCase();
-    return `${firstInitial}${lastInitial}-${timestamp}-${random}`;
+    const randomNumbers = Math.floor(1000000 + Math.random() * 9000000).toString();
+    return `${firstInitial}${lastInitial}-${randomNumbers}`;
   };
 
   /* ===================== GERAÇÃO DE TRIALS ===================== */
@@ -287,7 +286,7 @@ const App: React.FC = () => {
       <div className="screen">
         <div className="card">
           {/* ADICIONE A URL DA IMAGEM DO LOGO AQUI */}
-          <img src="https://www.laps.ufpa.br/assets/img/laps_logo.png" alt="Logo LaPS" className="lab-logo" />
+          <img src="" alt="Logo LaPS" className="lab-logo" />
           <h1>Experimento Stroop</h1>
           <p className="subtitle">Dinâmica Contextual Sequencial</p>
           <p className="info">UFPA - ITEC - Laboratório de Processamento de Sinais (LaPS)</p>
@@ -295,6 +294,10 @@ const App: React.FC = () => {
             Iniciar <ChevronRight size={20} />
           </button>
         </div>
+        <footer className="page-footer">
+          <p>Pesquisa aprovada pelo Comitê de Ética em Pesquisa da UFPA sob parecer nº 8.085.208.</p>
+          <p>Laboratório de Processamento de Sinais (LaPS) – Instituto de Tecnologia (ITEC) – UFPA, 2026.</p>
+        </footer>
       </div>
     );
   }
@@ -478,21 +481,44 @@ const App: React.FC = () => {
   if (phase === 'finish') {
     return (
       <div className="screen">
-        <div className="card">
+        <div className="card card-scrollable">
           {dataSent ? (
             <CheckCircle size={64} className="icon-success" />
           ) : (
             <AlertCircle size={64} className="icon-warning" />
           )}
           <h2>Experimento Concluído</h2>
-          <p className="info">Obrigado pela sua participação!</p>
-          <p className="info"><strong>Código do Participante:</strong> {participantId}</p>
+          
+          <div className="thanks-message">
+            <p className="thanks-title">Muito obrigado pela sua valiosa participação!</p>
+            <p className="thanks-text">
+              Sua contribuição é fundamental para o avanço do conhecimento em neurociência cognitiva. 
+              Os dados coletados neste experimento ajudarão a compreender melhor os processos de atenção, 
+              controle cognitivo e processamento contextual no cérebro humano.
+            </p>
+            <p className="thanks-text">
+              Agradecemos imensamente seu tempo e dedicação a esta pesquisa!
+            </p>
+          </div>
+
+          <div className="participant-code-box">
+            <p className="code-label">Seu Código de Participante:</p>
+            <p className="code-value">{participantId}</p>
+            <p className="code-info">
+              Anote este código caso deseje entrar em contato para obter informações sobre seus dados.
+            </p>
+            <p className="contact-info">
+              <strong>Contato:</strong> jose.amador@ntpc.ufpa.br
+            </p>
+          </div>
+
           <p className="info">Total de tentativas: {data.length}</p>
           {dataSent ? (
             <p className="success-text">✓ Dados enviados com sucesso</p>
           ) : (
             <p className="warning-text">⚠ Verifique sua conexão. Os dados podem não ter sido enviados.</p>
           )}
+          
           <div className="button-group">
             <a href={TCLE_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary">
               <Download size={18} /> Baixar TCLE
@@ -511,8 +537,18 @@ const App: React.FC = () => {
             >
               <Download size={18} /> Baixar Dados (JSON)
             </button>
+            <button
+              className="btn-finish"
+              onClick={() => window.location.reload()}
+            >
+              FINALIZAR
+            </button>
           </div>
         </div>
+        <footer className="page-footer">
+          <p>Pesquisa aprovada pelo Comitê de Ética em Pesquisa da UFPA sob parecer nº 8.085.208.</p>
+          <p>Laboratório de Processamento de Sinais (LaPS) – Instituto de Tecnologia (ITEC) – UFPA, 2026.</p>
+        </footer>
       </div>
     );
   }
