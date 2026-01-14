@@ -367,8 +367,8 @@ stroop-experiment-ufpa/
 ### Pesquisador Responsável
 
 **José Antônio Amador**  
-Laboratório de Processamento de Sinais (LaPS)  
-Instituto de Tecnologia (ITEC)  
+Laboratório de Neurofisiologia Eduardo Oswaldo Cruz (LNEOC)  
+Programa de Pós-Graduação em Neurociências e Comportamento (PPGNC)  
 Universidade Federal do Pará (UFPA)  
 📧 jose.amador@ntpc.ufpa.br
 
@@ -533,11 +533,11 @@ Se você é um **pesquisador** interessado em colaboração:
 ### Questões Técnicas
 
 Para **issues técnicos** com o código:
-- Abra um issue no GitHub: [Issues](https://github.com/SEU-USUARIO/stroop-experiment-ufpa/issues)
+- Abra um issue no GitHub: [Issues](https://github.com/labneuroexperiment/stroop-experiment-ufpa/issues)
 
 ### Redes Sociais e Links
 
-- **LaPS/UFPA**: [Site institucional - se disponível]
+- **LaPS/UFPA**: https://www.laps.ufpa.br/
 - **ITEC/UFPA**: https://www.itec.ufpa.br
 
 ---
@@ -553,13 +553,13 @@ Para **issues técnicos** com o código:
 
 ## 📊 Status do Projeto
 
-![GitHub last commit](https://img.shields.io/github/last-commit/SEU-USUARIO/stroop-experiment-ufpa)
-![GitHub issues](https://img.shields.io/github/issues/SEU-USUARIO/stroop-experiment-ufpa)
-![GitHub stars](https://img.shields.io/github/stars/SEU-USUARIO/stroop-experiment-ufpa?style=social)
+![GitHub last commit](https://img.shields.io/github/last-commit/labneuroexperiment/stroop-experiment-ufpa)
+![GitHub issues](https://img.shields.io/github/issues/labneuroexperiment/stroop-experiment-ufpa)
+![GitHub stars](https://img.shields.io/github/stars/labneuroexperiment/stroop-experiment-ufpa?style=social)
 
 **Versão atual**: 1.0.0  
 **Status**: Ativo - Coleta de dados em andamento  
-**Última atualização**: Janeiro 2025
+**Última atualização**: Janeiro 2026
 
 ---
 
