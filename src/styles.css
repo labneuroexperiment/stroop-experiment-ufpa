@@ -504,6 +504,29 @@ h2 {
   font-weight: 500;
 }
 
+/* Rodapé estático para a página final */
+.page-footer-static {
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.page-footer-static p {
+  margin: 4px 0;
+  font-weight: 400;
+}
+
+.page-footer-static p:first-child {
+  font-weight: 500;
+}
+
 /* ===================== LOGO ===================== */
 
 .lab-logo {
