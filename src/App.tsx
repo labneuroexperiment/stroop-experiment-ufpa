@@ -5,6 +5,7 @@ import {ChevronRight, CheckCircle, Download, AlertCircle} from 'lucide-react';
 
 interface TrialData {
   participantId: string;
+  deviceType: string;
   block: number;
   trialInBlock: number;
   globalTrial: number;
@@ -67,6 +68,37 @@ const App: React.FC = () => {
   const [dataSent, setDataSent] = useState(false);
   
   const onsetRef = useRef<number | null>(null);
+
+  /* ===================== DETECÇÃO DE DISPOSITIVO ===================== */
+
+ useEffect(() => {
+    const detectDevice = (): string => {
+      const ua = navigator.userAgent;
+      
+      // 1. Verificação para navegadores modernos (Chrome/Edge/Android)
+      // O 'navigator.userAgentData' é a forma mais confiável a partir de 2025
+      if ((navigator as any).userAgentData?.mobile) {
+        // Se for mobile, ainda precisamos checar se é tablet via UA ou largura
+        const isTabletUA = /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua);
+        return isTabletUA ? 'Tablet' : 'Smartphone';
+      }
+
+      // 2. Detecção específica para iPad no Safari (que se identifica como Macintosh)
+      // iPads modernos têm múltiplos touch points, desktops raramente têm tantos.
+      const isIPad = /Macintosh/i.test(ua) && navigator.maxTouchPoints > 1;
+
+      // 3. Fallback via Regex para outros navegadores
+      const isMobileRegex = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+      const isTabletRegex = /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua);
+
+      if (isIPad || isTabletRegex) return 'Tablet';
+      if (isMobileRegex) return 'Smartphone';
+      
+      return 'Desktop/Laptop';
+    };
+    
+    setDeviceType(detectDevice());
+  }, []);
 
   /* ===================== GERAÇÃO DE CÓDIGO ===================== */
 
@@ -240,7 +272,7 @@ const App: React.FC = () => {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ participantId, data }),
+        body: JSON.stringify({ participantId, deviceType, data }),
       });
       setDataSent(true);
     } catch (error) {
@@ -362,7 +394,7 @@ const App: React.FC = () => {
             <p><strong>Benefícios:</strong> Contribuição para pesquisa científica em cognição e neurociência computacional.</p>
             <p><strong>Confidencialidade:</strong> Seus dados serão coletados de forma anônima. O código gerado não permite identificação pessoal.</p>
             <p><strong>Voluntariedade:</strong> Sua participação é totalmente voluntária. Você pode desistir a qualquer momento sem qualquer penalidade.</p>
-            <p><strong>Contato:</strong> Para dúvidas, entre em contato com o LaPS/UFPA.</p>
+            <p><strong>Contato:</strong> jose.amador@ntpc.ufpa.br</p>
             <p className="consent-declaration">Ao clicar em "Aceito Participar", você declara que leu e compreendeu este termo e concorda voluntariamente em participar deste estudo.</p>
           </div>
           <div className="button-group">
