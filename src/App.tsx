@@ -56,6 +56,7 @@ const App: React.FC = () => {
   const [participantId, setParticipantId] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [deviceType, setDeviceType] = useState('');
   
   const [block, setBlock] = useState(0);
   const [trialInBlock, setTrialInBlock] = useState(0);
