@@ -27,7 +27,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fa;
+  background-color: #f8f9fa; /* páginas institucionais */
   padding: 20px;
 }
 
@@ -37,7 +37,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #1a1a1a; /* FUNDO ESCURO RESTAURADO */
+  background-color: #1a1a1a; /* experimento Stroop */
   padding: 20px;
 }
 
