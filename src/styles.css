@@ -347,10 +347,7 @@ h2 {
 
 /* ===== ALTERAÇÃO: Rodapé não flutuante para não atrapalhar botão em mobile ===== */
 .page-footer {
-  position: relative; /* Mudado de fixed para relative */
-  bottom: auto; /* Removido posicionamento fixo */
-  left: auto;
-  right: auto;
+  position: relative;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
   color: white;
@@ -358,8 +355,10 @@ h2 {
   text-align: center;
   font-size: 13px;
   line-height: 1.6;
-  margin-top: 30px; /* Espaçamento do conteúdo acima */
-  width: 100%; /* Garante largura total */
+  margin: 30px auto 0 auto;   /* centraliza */
+  max-width: 800px;           /* igual aos cards */
+  width: calc(100% - 40px);   /* respiro lateral */
+  border-radius: 12px;        /* 👈 arredondamento */
 }
 
 .page-footer p {
