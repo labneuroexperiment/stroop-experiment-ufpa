@@ -37,13 +37,13 @@ const WORDS = ['VERMELHO', 'VERDE', 'AZUL'];
 const COLORS = ['red', 'green', 'blue'];
 
 const N_BLOCKS = 4;
-const TRIALS_PER_BLOCK = 20;
+const TRIALS_PER_BLOCK = 25;
 const PRACTICE_TRIALS = 5;
 
-const FIXATION_MS = 800;
+/* ===== ALTERAÇÃO: Ajuste de timings - ITI fixo de 1 segundo ===== */
+const FIXATION_MS = 0; // não há mais tempo de fixação
 const DEADLINE_MS = 2000;
-const ITI_MIN = 700;
-const ITI_MAX = 1300;
+const ITI_MS = 1000; // ITI fixo de 1 segundo entre estímulos
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzauIcxpl6kTrcw8S9XHANbz9ZhqyN10Sw0QWyUEMS7yUD4AeQRmt71Mz67bz0itkvn/exec';
 const TCLE_DOWNLOAD_URL = 'https://drive.google.com/file/d/1zEszA8NnJIb2HpCGp-Nhj9VB3kx-hUq9/view?usp=sharing';
@@ -153,19 +153,16 @@ const App: React.FC = () => {
     }
   }, [phase, blocks.length, isPractice]);
 
-  /* ===================== FLUXO - FIXATION ===================== */
-
+  /* ===================== FLUXO - FIXATION ===================== */  
   useEffect(() => {
     if (phase === 'fixation') {
-      const t = setTimeout(() => {
-        onsetRef.current = performance.now();
-        if (isPractice) {
-          setPhase('practice');
-        } else {
-          setPhase('experiment');
-        }
-      }, FIXATION_MS);
-      return () => clearTimeout(t);
+      // Inicia o trial imediatamente sem delay
+      onsetRef.current = performance.now();
+      if (isPractice) {
+        setPhase('practice');
+      } else {
+        setPhase('experiment');
+      }
     }
   }, [phase, isPractice]);
 
@@ -183,13 +180,12 @@ const App: React.FC = () => {
   }, [phase, trialInBlock]);
 
   /* ===================== FLUXO - ITI ===================== */
-
+  /* ===== ALTERAÇÃO: ITI fixo de 1 segundo, botões permanecem visíveis ===== */
   useEffect(() => {
     if (phase === 'iti') {
-      const itiDuration = ITI_MIN + Math.random() * (ITI_MAX - ITI_MIN);
       const t = setTimeout(() => {
         advance();
-      }, itiDuration);
+      }, ITI_MS); // 1 segundo fixo
       return () => clearTimeout(t);
     }
   }, [phase]);
@@ -318,7 +314,7 @@ const App: React.FC = () => {
     return (
       <div className="screen">
         <div className="card">
-          {/* ADICIONE A URL DA IMAGEM DO LOGO AQUI */}
+          {/* NÃO ESQUECER DE ADICIONAR A URL DA IMAGEM DO LOGO AQUI */}
           <img src="https://www.laps.ufpa.br/assets/img/laps_logo.png" alt="Logo LaPS" className="lab-logo" />
           <h1>Experimento Stroop</h1>
           <p className="subtitle">Dinâmica Contextual Sequencial</p>
@@ -473,18 +469,44 @@ const App: React.FC = () => {
     );
   }
 
+  /* ===== ALTERAÇÃO: Fixation removida - não mostra mais a cruz ===== */
   if (phase === 'fixation') {
+    // Fase de fixation agora é apenas lógica, sem renderização visual
+    return null;
+  }
+
+  /* ===== ALTERAÇÃO: Durante ITI, botões permanecem visíveis, apenas palavra desaparece ===== */
+  if (phase === 'iti') {
     return (
       <div className="screen-dark">
-        <div className="fixation">+</div>
+        <div className="trial-container">
+          {/* Espaço vazio onde a palavra estava */}
+          <div className="stroop-word" style={{ opacity: 0, pointerEvents: 'none' }}>
+            &nbsp;
+          </div>
+          {/* Botões permanecem visíveis durante ITI */}
+          <div className="response-buttons">
+            <button
+              className="response-btn"
+              disabled
+              style={{ opacity: 0.5, cursor: 'not-allowed' }}
+            >
+              ← INCONGRUENTE
+            </button>
+            <button
+              className="response-btn"
+              disabled
+              style={{ opacity: 0.5, cursor: 'not-allowed' }}
+            >
+              CONGRUENTE →
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
 
-  if (phase === 'iti') {
-    return <div className="screen-dark"></div>;
-  }
-
+  /* ===== ALTERAÇÃO: Botões sempre visíveis durante apresentação do estímulo ===== */
   if ((phase === 'experiment' || phase === 'practice') && trial) {
     return (
       <div className="screen-dark">
