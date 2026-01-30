@@ -319,7 +319,7 @@ const App: React.FC = () => {
           <img src="https://www.laps.ufpa.br/assets/img/laps_logo.png" alt="Logo LaPS" className="lab-logo" />
           <h1>Experimento Stroop</h1>
           <p className="subtitle">Dinâmica Contextual Sequencial</p>
-          <p className="info"><strong>Responsáveis: </strong>Dr. Antônio Pereira Jr. & José Antônio Amador</p>
+          <p className="info"><strong>Responsáveis: </strong>Dr. Antonio Pereira Jr. (ITEC) & José Antônio Amador (NTPC)</p>
           <button className="btn-primary" onClick={() => setPhase('code')}>
             Iniciar <ChevronRight size={20} />
           </button>
