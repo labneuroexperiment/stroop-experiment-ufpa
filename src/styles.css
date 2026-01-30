@@ -479,12 +479,12 @@ h2 {
 }
 
 /* ===================== RODAPÉ ===================== */
-
+/* ===== ALTERAÇÃO 2: Rodapé não flutuante para não atrapalhar botão em mobile ===== */
 .page-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: relative; /* Mudado de fixed para relative */
+  bottom: auto; /* Removido posicionamento fixo */
+  left: auto;
+  right: auto;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
   color: white;
@@ -492,7 +492,8 @@ h2 {
   text-align: center;
   font-size: 13px;
   line-height: 1.6;
-  z-index: 100;
+  margin-top: 30px; /* Espaçamento do conteúdo acima */
+  width: 100%; /* Garante largura total */
 }
 
 .page-footer p {
@@ -501,29 +502,6 @@ h2 {
 }
 
 .page-footer p:first-child {
-  font-weight: 500;
-}
-
-/* Rodapé estático para a página final */
-.page-footer-static {
-  position: relative;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  color: white;
-  padding: 16px 20px;
-  text-align: center;
-  font-size: 13px;
-  line-height: 1.6;
-  margin-top: 40px;
-  width: 100%;
-}
-
-.page-footer-static p {
-  margin: 4px 0;
-  font-weight: 400;
-}
-
-.page-footer-static p:first-child {
   font-weight: 500;
 }
 
