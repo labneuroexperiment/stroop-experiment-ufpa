@@ -43,7 +43,7 @@ const PRACTICE_TRIALS = 5;
 /* ===== ALTERAÇÃO: Ajuste de timings - ITI fixo de 1 segundo ===== */
 const FIXATION_MS = 0; // não há mais tempo de fixação
 const DEADLINE_MS = 2000;
-const ITI_MS = 1000; // ITI fixo de 1 segundo entre estímulos
+const ITI_MS = 800; // ITI fixo de 0,8 segundo entre estímulos
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzauIcxpl6kTrcw8S9XHANbz9ZhqyN10Sw0QWyUEMS7yUD4AeQRmt71Mz67bz0itkvn/exec';
 const TCLE_DOWNLOAD_URL = 'https://drive.google.com/file/d/1zEszA8NnJIb2HpCGp-Nhj9VB3kx-hUq9/view?usp=sharing';
@@ -51,7 +51,7 @@ const TCLE_DOWNLOAD_URL = 'https://drive.google.com/file/d/1zEszA8NnJIb2HpCGp-Nh
 /* ===================== APP ===================== */
 
 const App: React.FC = () => {
-  const [phase, setPhase] = useState<'welcome' | 'code' | 'consent' | 'instructions' | 'practice' | 'fixation' | 'experiment' | 'iti' | 'interblock' | 'finish'>('welcome');
+  const [phase, setPhase] = useState<'welcome' | 'code' | 'consent' | 'instructions' | 'practice' | 'start-experiment' | 'fixation' | 'experiment' | 'iti' | 'interblock' | 'finish'>('welcome');
   
   const [participantId, setParticipantId] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -241,8 +241,9 @@ const App: React.FC = () => {
         setTrialInBlock(t => t + 1);
         setPhase('fixation');
       } else {
+        /* ===== MODIFICAÇÃO: Após treino, adicionado página de transição em vez de direto para experimento ===== */
         setIsPractice(false);
-        setPhase('experiment');
+        setPhase('start-experiment');
       }
     } else {
       if (trialInBlock + 1 < TRIALS_PER_BLOCK) {
@@ -452,7 +453,30 @@ const App: React.FC = () => {
       </div>
     );
   }
-
+/* ===== MODIFICAÇÃO: Adiconado nova página de transição entre treino e experimento ===== */
+  if (phase === 'start-experiment') {
+    return (
+      <div className="screen">
+        <div className="card">
+          <CheckCircle size={64} className="icon-success" />
+          <h2>Treino Concluído!</h2>
+          <p className="info">Parabéns! Você completou as {PRACTICE_TRIALS} tentativas de treino.</p>
+          <p className="info">Agora você está pronto para iniciar o experimento real.</p>
+          <p className="info"><strong>Lembre-se:</strong></p>
+          <ul className="reminder-list">
+            <li>Responda o mais rápido e preciso possível</li>
+            <li>Use as teclas ← (incongruente) e → (congruente)</li>
+            <li>Ou clique nos botões na tela</li>
+          </ul>
+          <p className="info">O experimento terá {N_BLOCKS} blocos de {TRIALS_PER_BLOCK} tentativas cada.</p>
+          <button className="btn-primary" onClick={() => setPhase('experiment')}>
+            Iniciar Experimento <ChevronRight size={20} />
+          </button>
+        </div>
+      </div>
+    );
+  }
+  
   if (phase === 'interblock') {
     return (
       <div className="screen">
