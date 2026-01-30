@@ -40,10 +40,10 @@ const N_BLOCKS = 4;
 const TRIALS_PER_BLOCK = 25;
 const PRACTICE_TRIALS = 5;
 
-/* ===== ALTERAÇÃO: Ajuste de timings - ITI fixo de 1 segundo ===== */
+/* ===== ALTERAÇÃO: Ajuste de timings - ITI fixo de 0,5 segundo ===== */
 const FIXATION_MS = 0; // não há mais tempo de fixação
 const DEADLINE_MS = 2000;
-const ITI_MS = 800; // ITI fixo de 0,8 segundo entre estímulos
+const ITI_MS = 500; // ITI fixo de 0,5 segundo entre estímulos
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzauIcxpl6kTrcw8S9XHANbz9ZhqyN10Sw0QWyUEMS7yUD4AeQRmt71Mz67bz0itkvn/exec';
 const TCLE_DOWNLOAD_URL = 'https://drive.google.com/file/d/1zEszA8NnJIb2HpCGp-Nhj9VB3kx-hUq9/view?usp=sharing';
