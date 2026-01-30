@@ -279,7 +279,7 @@ h2 {
   border-radius: 12px;
   padding: 24px;
   margin: 24px 0;
-  text-align: left;
+  text-align: justify;
 }
 
 .thanks-title {
@@ -346,8 +346,8 @@ h2 {
 /* ===================== RODAPÉ ===================== */
 
 .footer {
-    background-color: #2d3748;
-    color: #e2e8f0;
+    background-color: #C7D3EB;
+    color: #220E45;
     text-align: center;
     padding: 20px;
     font-size: 0.9rem;
