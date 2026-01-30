@@ -345,18 +345,30 @@ h2 {
 
 /* ===================== RODAPÉ ===================== */
 
-.footer {
-    background-color: #C7D3EB;
-    color: #220E45;
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
-    margin-top: auto;
+/* ===== ALTERAÇÃO: Rodapé não flutuante para não atrapalhar botão em mobile ===== */
+.page-footer {
+  position: relative; /* Mudado de fixed para relative */
+  bottom: auto; /* Removido posicionamento fixo */
+  left: auto;
+  right: auto;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 30px; /* Espaçamento do conteúdo acima */
+  width: 100%; /* Garante largura total */
 }
 
-.footer p {
-    margin-bottom: 5px;
-    color: #e2e8f0;
+.page-footer p {
+  margin: 4px 0;
+  font-weight: 400;
+}
+
+.page-footer p:first-child {
+  font-weight: 500;
 }
 
 /* ===================== LOGO ===================== */
