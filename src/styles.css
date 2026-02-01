@@ -169,12 +169,24 @@ h2 {
   text-align: left;
 }
 
+/* ===== MODIFICAÇÃO: Container para campos lado a lado ===== */
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.form-group-inline {
+  flex: 1;
+  margin-bottom: 0;
+}
+
 .form-group label {
   display: block;
   font-size: 1rem;
   font-weight: 500;
   color: #2d3748;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .input {
@@ -183,7 +195,36 @@ h2 {
   font-size: 1rem;
   border: 2px solid #e2e8f0;
   border-radius: 8px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease;
+}
+
+/* ===== ADIÇÃO: Estilos para campo de idade ===== */
+.input-age {
+  width: 120px;
+  text-align: center;
+}
+
+/* ===== ADIÇÃO: Estilos para select de gênero ===== */
+.select-gender {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232d3748' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+.select-gender option {
+  background: white;
+  color: #2d3748;
+}
+
+/* ===== ADIÇÃO: Mensagem de erro ===== */
+.error-text {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
 }
 
 .input:focus {
@@ -191,7 +232,6 @@ h2 {
   border-color: #4299e1;
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
 }
-
 /* ===================== CONSENTIMENTO / TCLE ===================== */
 
 .consent-content {
