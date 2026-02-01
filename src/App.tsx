@@ -25,6 +25,11 @@ interface TrialData {
   timestamp: string;
 }
 
+/* ===== ADIÇÃO: Interface para dados sociodemográficos ===== */
+interface DemographicData {
+  age: number;
+  gender: string;
+
 interface StroopTrial {
   word: string;
   color: string;
@@ -57,6 +62,10 @@ const App: React.FC = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [deviceType, setDeviceType] = useState('');
+  
+  /* ===== ADIÇÃO: Estados para dados sociodemográficos ===== */
+  const [age, setAge] = useState<string>('');
+  const [gender, setGender] = useState<string>('');
   
   const [block, setBlock] = useState(0);
   const [trialInBlock, setTrialInBlock] = useState(0);
@@ -270,7 +279,7 @@ const App: React.FC = () => {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ participantId, deviceType, data }),
+        body: JSON.stringify({ participantId, deviceType, data, demographics: {age: parseInt(age), gender: gender} }),
       });
       setDataSent(true);
     } catch (error) {
@@ -333,6 +342,10 @@ const App: React.FC = () => {
   }
 
   if (phase === 'code') {
+    const ageNum = parseInt(age);
+    const isAgeValid = age !== '' && !isNaN(ageNum) && ageNum >= 18;
+    const isFormValid = firstName.trim() && lastName.trim() && isAgeValid && gender !== '';
+    
     return (
       <div className="screen">
         <div className="card">
@@ -360,6 +373,41 @@ const App: React.FC = () => {
               maxLength={20}
             />
           </div>
+          
+          {/* ===== MODIFICAÇÃO: Campos de Idade e Gênero lado a lado ===== */}
+          <div className="form-row">
+            {/* Campo de Idade */}
+            <div className="form-group form-group-inline">
+              <label>Idade:</label>
+              <input
+                type="number"
+                className="input input-age"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                placeholder="18+"
+                min="18"
+                max="120"
+              />
+              {age !== '' && !isAgeValid && (
+                <p className="error-text">Você deve ter 18 anos ou mais para participar</p>
+              )}
+            </div>
+            
+            {/* Campo de Gênero */}
+            <div className="form-group form-group-inline">
+              <label>Gênero:</label>
+              <select
+                className="input select-gender"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <option value="">Selecione...</option>
+                <option value="MASCULINO">MASCULINO</option>                
+                <option value="FEMININO">FEMININO</option>                
+              </select>
+            </div>
+          </div>
+          
           <button
             className="btn-primary"
             disabled={!firstName.trim() || !lastName.trim()}
