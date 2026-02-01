@@ -29,7 +29,7 @@ interface TrialData {
 interface DemographicData {
   age: number;
   gender: string;
-
+}
 interface StroopTrial {
   word: string;
   color: string;
